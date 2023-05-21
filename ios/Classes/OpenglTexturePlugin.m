@@ -5,6 +5,8 @@
 @interface OpenglTexturePlugin()
 @property (nonatomic, strong) NSMutableDictionary<NSNumber *, OpenGLRender *> *renders;
 @property (nonatomic, strong) NSObject<FlutterTextureRegistry> *textures;
+
+@property (strong, nonatomic) NSObject<FlutterPluginRegistrar>* registrar;
 @end
 
 @implementation OpenglTexturePlugin
@@ -23,6 +25,7 @@
                                      binaryMessenger:[registrar messenger]];
     OpenglTexturePlugin* instance = [[OpenglTexturePlugin alloc] initWithTextures:[registrar textures]];
     [registrar addMethodCallDelegate:instance channel:channel];
+    instance.registrar = registrar;
 }
 
 - (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
@@ -40,6 +43,7 @@
                                                        }];
         
         textureId = [self.textures registerTexture:render];
+        render.registrar = self.registrar;
         self.renders[@(textureId)] = render;
         result(@(textureId));
     } else if ([@"dispose" isEqualToString:call.method]) {

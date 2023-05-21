@@ -4,19 +4,19 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
-  - Flutter (from `Pods/.symlinks/flutter/ios`)
-  - opengl_texture (from `Pods/.symlinks/plugins/opengl_texture/ios`)
+  - Flutter (from `Flutter`)
+  - opengl_texture (from `.symlinks/plugins/opengl_texture/ios`)
 
 EXTERNAL SOURCES:
   Flutter:
-    :path: Pods/.symlinks/flutter/ios
+    :path: Flutter
   opengl_texture:
-    :path: Pods/.symlinks/plugins/opengl_texture/ios
+    :path: ".symlinks/plugins/opengl_texture/ios"
 
 SPEC CHECKSUMS:
-  Flutter: 9d0fac939486c9aba2809b7982dfdbb47a7b0296
-  opengl_texture: 306b1200971e1e4b25def7efd4a23aed2e6faf21
+  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  opengl_texture: 0507ba0b0c73e07b64156a006474f8f326103dd7
 
-PODFILE CHECKSUM: 0420ab312a523ae0eecfb1fc19ea51dd82cc17c7
+PODFILE CHECKSUM: 663715e941f9adb426e33bf9376914006f9ea95b
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.11.3

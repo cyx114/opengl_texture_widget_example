@@ -15,6 +15,9 @@
 
 @interface OpenGLRender : NSObject<FlutterTexture>
 
+
+@property (strong, nonatomic) NSObject<FlutterPluginRegistrar>* registrar;
+
 - (instancetype)initWithSize:(CGSize)renderSize
                       worker:(id<OpenGLRenderWorker>)worker
                   onNewFrame:(void(^)(void))onNewFrame;
