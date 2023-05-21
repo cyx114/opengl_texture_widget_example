@@ -18,5 +18,11 @@ class OpenGLTextureController {
   Future<Null> dispose() =>
       _channel.invokeMethod('dispose', {'textureId': textureId});
 
+
+  Future<Null> loadData() {
+    return _channel.invokeMethod('loadData', {'textureId': textureId});
+  }
+
+
   bool get isInitialized => textureId != null;
 }

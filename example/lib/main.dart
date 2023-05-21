@@ -12,20 +12,35 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final _controller = new OpenGLTextureController();
-  final _width = 200.0;
-  final _height = 200.0;
+  final _width = 1280.0;
+  final _height = 720.0;
+
+  Texture? _texture;
 
   @override
   initState() {
     super.initState();
 
     initializeController();
+    _startPlay();
+  }
+
+  void _startPlay() {
+    Future.delayed(const Duration(seconds: 5), () {
+      print('load data');
+       _controller.loadData();
+    });
+    Future.delayed(const Duration(seconds: 10), () {
+      _texture =  _controller.isInitialized
+          ? new Texture(textureId: _controller.textureId)
+          : null;
+      setState(() {});
+    });
   }
 
   @override
   void dispose() {
     _controller.dispose();
-
     super.dispose();
   }
 
@@ -38,11 +53,9 @@ class _MyAppState extends State<MyApp> {
         ),
         body: new Center(
           child: new Container(
-            width: _width,
-            height: _height,
-            child: _controller.isInitialized
-                ? new Texture(textureId: _controller.textureId)
-                : null,
+            // width: _width,
+            // height: _height,
+            child: AspectRatio(aspectRatio: 16/9, child: _texture),
           ),
         ),
       ),
@@ -51,6 +64,7 @@ class _MyAppState extends State<MyApp> {
 
   Future<Null> initializeController() async {
     await _controller.initialize(_width, _height);
+    print('initializeController');
     setState(() {});
   }
 }

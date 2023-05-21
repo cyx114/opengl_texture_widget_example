@@ -45,6 +45,7 @@
         textureId = [self.textures registerTexture:render];
         render.registrar = self.registrar;
         self.renders[@(textureId)] = render;
+        NSLog(@"textureid");
         result(@(textureId));
     } else if ([@"dispose" isEqualToString:call.method]) {
         NSNumber *textureId = call.arguments[@"textureId"];
@@ -52,7 +53,13 @@
         [render dispose];
         [self.renders removeObjectForKey:textureId];
         result(nil);
-    } else {
+    } else if ([@"loadData" isEqualToString:call.method]) {
+        NSLog(@"load data");
+        NSNumber *textureId = call.arguments[@"textureId"];
+        OpenGLRender *render = self.renders[textureId];
+        [render.registrar.textures textureFrameAvailable:textureId.integerValue];
+    }
+    else {
         result(FlutterMethodNotImplemented);
     }
 }

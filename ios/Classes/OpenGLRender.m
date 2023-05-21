@@ -78,7 +78,6 @@
     return [self getYUVData];
 }
 
-
 - (CVPixelBufferRef)getYUVData {
     NSString* key = [self.registrar lookupKeyForAsset:@"assets/test.yuv"];
     NSString* path = [[NSBundle mainBundle] pathForResource:key ofType:nil];
